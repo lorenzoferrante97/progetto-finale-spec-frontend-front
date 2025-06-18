@@ -3,6 +3,7 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import useGames from "../hooks/useGames";
+import useSort from "../hooks/useSort";
 
 const GlobalContext = createContext();
 
@@ -13,10 +14,11 @@ const GlobalProvider = ({ children }) => {
 
   // --- USE GAMES ---------------------------------------------------------------------------
   const {games, dispatch} = useGames();
-  
-  
 
-  const value = {games, dispatch, getVideogames, getVideogame};
+  // --- USE SORT ---------------------------------------------------------------------------
+  const {sortedData, handleSort, sortBy, sortOrder} = useSort(games.allGames, "title", "asc");
+
+  const value = {games, sortedData, sortBy, sortOrder, handleSort, dispatch, getVideogames, getVideogame};
 
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
