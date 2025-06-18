@@ -11,7 +11,11 @@ const reducer = (state, action) => {
     case 'fetchSingleGame':
       return {...state, activeGame: action.payload};
     case 'orderGames':
-      return {...state, allGames: action.payload};
+      if(state.allGames.length !== action.payload.length) {
+        return {...state, filteredGames: action.payload};
+        } else {
+          return {...state, allGames: action.payload};
+        }
     case 'filterGames':
       if(state.allGames.length !== action.payload.length) {
       return {...state, filteredGames: action.payload};

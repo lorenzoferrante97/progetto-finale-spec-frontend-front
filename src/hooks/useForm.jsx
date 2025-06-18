@@ -23,7 +23,6 @@ export default function useForm(array, dispatch) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const filterValues = useCallback(debounce((query, array) => {
-    console.log("array dentro usecallback debounce: ", array);
     const filterRes = array?.filter((item) => {
       const { title } = item;
       return title.trim().toLowerCase().includes(query.trim().toLowerCase());

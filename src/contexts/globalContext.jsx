@@ -17,7 +17,7 @@ const GlobalProvider = ({ children }) => {
   const {games, dispatch} = useGames();
 
   // --- USE SORT ---------------------------------------------------------------------------
-  const {sortedData, handleSort, sortBy, sortOrder} = useSort(games.allGames, "title", "desc");
+  const {sortedData, handleSort, sortBy, sortOrder} = useSort(games?.filteredGames?.length > 0 ? games?.filteredGames : games?.allGames, "title", "desc");
 
   // --- USE FORM ---------------------------------------------------------------------------
   const {query, handleChange} = useForm(games?.allGames, dispatch);
