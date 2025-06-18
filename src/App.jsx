@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layouts/defaultLayout";
 import Home from "./pages/Home";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<Home />} />
+          <Route path="/videogame/:id" element={<Detail />} />
         </Route>
       </Routes>
     </Router>
