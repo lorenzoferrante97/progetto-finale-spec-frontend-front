@@ -15,5 +15,17 @@ export default function useFetch() {
     return resJson;
   }
 
-  return {getVideogames};
+  const getVideogame = async (id) => {
+    const res = await fetch(`${apiBaseUrl}/videogames/${id}`);
+
+    if(!res.ok) {
+      throw new Error('Failed to fetch videogame');
+    }
+
+    const resJson = await res.json();
+
+    return resJson;
+  }
+
+  return {getVideogames, getVideogame};
 }

@@ -8,13 +8,15 @@ const GlobalContext = createContext();
 const GlobalProvider = ({ children }) => {
 
   // --- USE FETCH ---------------------------------------------------------------------------
-  const {getVideogames} = useFetch();
+  const {getVideogames, getVideogame} = useFetch();
 
   // --- VIDEOGAMES STATE -----------------------------------------------------------------------
   const reducer = (state, action) => {
     switch (action.type) {
       case 'fetchAllGames':
         return {...state, allGames: action.payload};
+      case 'fetchSingleGame':
+        return {...state, activeGame: action.payload}
       default:
         return state;
     }
@@ -24,7 +26,7 @@ const GlobalProvider = ({ children }) => {
   
   
 
-  const value = {games, dispatch, getVideogames};
+  const value = {games, dispatch, getVideogames, getVideogame};
 
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
