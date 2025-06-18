@@ -16,7 +16,7 @@ const GlobalProvider = ({ children }) => {
   const {games, dispatch} = useGames();
 
   // --- USE SORT ---------------------------------------------------------------------------
-  const {sortedData, handleSort, sortBy, sortOrder} = useSort(games.allGames, "title", "asc");
+  const {sortedData, handleSort, sortBy, sortOrder} = useSort(games.allGames, "title", "desc");
 
   const value = {games, sortedData, sortBy, sortOrder, handleSort, dispatch, getVideogames, getVideogame};
 

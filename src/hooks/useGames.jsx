@@ -8,7 +8,9 @@ const reducer = (state, action) => {
     case 'fetchAllGames':
       return {...state, allGames: action.payload};
     case 'fetchSingleGame':
-      return {...state, activeGame: action.payload}
+      return {...state, activeGame: action.payload};
+    case 'orderGames':
+      return {...state, allGames: action.payload};
     default:
       return state;
   }
