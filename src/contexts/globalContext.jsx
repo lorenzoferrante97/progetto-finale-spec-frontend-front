@@ -1,7 +1,15 @@
+/* eslint-disable react-refresh/only-export-components */
+
 import { createContext, useContext, useReducer, useState } from "react";
+import useFetch from "../hooks/useFetch";
+
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
+
+  // --- USE FETCH ---------------------------------------------------------------------------
+
+  const {getVideogames} = useFetch();
 
   // --- VIDEOGAMES STATE -----------------------------------------------------------------------
 
@@ -13,7 +21,7 @@ const GlobalProvider = ({ children }) => {
   const reducer = (state, action) => {
     switch (action.type) {
       case 'fetchAllGames':
-        return ;
+        return getVideogames();
       case 'fetchGameById':
         return ;
       default:
@@ -25,7 +33,7 @@ const GlobalProvider = ({ children }) => {
   
   
 
-  const value = {};
+  const value = {games, dispatch};
 
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
