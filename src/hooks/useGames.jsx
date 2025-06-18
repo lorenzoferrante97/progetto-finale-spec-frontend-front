@@ -4,6 +4,7 @@ export default function useGames() {
 
 // --- VIDEOGAMES STATE -----------------------------------------------------------------------
 const reducer = (state, action) => {
+
   switch (action.type) {
     case 'fetchAllGames':
       return {...state, allGames: action.payload};
@@ -11,12 +12,16 @@ const reducer = (state, action) => {
       return {...state, activeGame: action.payload};
     case 'orderGames':
       return {...state, allGames: action.payload};
-    default:
-      return state;
+    case 'filterGames':
+      if(state.allGames.length !== action.payload.length) {
+      return {...state, filteredGames: action.payload};
+      } else {
+        return {...state, filteredGames: []};
+      }
   }
 }
 
-const [games, dispatch] = useReducer(reducer, {allGames: [], activeGame: {}});
+const [games, dispatch] = useReducer(reducer, {allGames: [], filteredGames: [], activeGame: {}});
 
   return {games, dispatch};
 }
