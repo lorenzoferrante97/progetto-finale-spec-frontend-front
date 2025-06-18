@@ -19,7 +19,13 @@ export default function Home() {
 
   return (
     <>
-      <div className="">Totale videogames ottenuti: {games?.allGames?.length}</div>
+      <div className="">
+        {
+          games?.allGames?.map((game) => (
+            <div key={game.id}>{game.title}</div>
+          ))
+        }
+      </div>
     </>
   );
 }
