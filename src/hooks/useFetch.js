@@ -1,18 +1,19 @@
+export default function useFetch() {
 
+  const apiBaseUrl = import.meta.env.VITE_API_URL;
 
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+  const getVideogames = async () => {
 
-// get all videogames --------------------------------------------------------
-const getVideogames = async () => {
-  const res = await fetch(`${apiBaseUrl}`);
+    const res = await fetch(`${apiBaseUrl}/videogames`);
 
-  if(!res.ok) {
-    throw new Error('Failed to fetch videogames');
+    if(!res.ok) {
+      throw new Error('Failed to fetch videogames');
+    }
+
+    const resJson = await res.json();
+
+    return resJson;
   }
 
-  const resJson = await res.json();
-
-  return resJson;
+  return {getVideogames};
 }
-
-export default {getVideogames};
