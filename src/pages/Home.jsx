@@ -1,5 +1,6 @@
 import { useGlobalContext } from "../contexts/globalContext";
 import { useEffect } from "react";
+import Card from "../components/Card";
 
 export default function Home() {
 
@@ -37,14 +38,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="">
+      <div className="row-grid gap-x-2 gap-y-4">
         {
-          renderList?.map((game) => (
-            <div key={game.id} className="mb-3">
-              <p>{game.title}</p>
-              <p>{game.category}</p>
-              </div>
-          ))
+          renderList?.map((game) => <Card key={game.id} game={game}/>)
         }
         <button className="hover:cursor-pointer text-red-400" onClick={() => handleSort("title")}>Sort By Title --- {sortOrder === 1 ? "asc" : "desc"}</button>
         <br></br>
