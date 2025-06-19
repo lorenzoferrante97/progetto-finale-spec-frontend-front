@@ -38,15 +38,19 @@ export default function Home() {
 
   return (
     <>
-      <div className="row-grid gap-x-2 gap-y-4">
+      <div className="p-section flex flex-col gap-2 font-body-base-bold">
+        <label htmlFor="search">Cerca per titolo</label>
+        <input name="search" value={query} onChange={handleChange} type="text" placeholder="scrivi qui" className="w-full px-4 py-2 min-h-12 bg-neutral-base-300 rounded-md focus-state font-body-base-regular"/>
+      </div>
+
+      <div className="row-grid gap-x-2 gap-y-4 p-section bg-neutral-base-200 rounded-lg">
+        <div className="col-span-full flex flex-wrap gap-2">
+          <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-1 max-lg:min-h-12" onClick={() => handleSort("title")}>Titolo <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "title") ? "A-Z" : "Z-A"}</span></button>
+          <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-1 max-lg:min-h-12" onClick={() => handleSort("category")}>Categoria <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "category") ? "A-Z" : "Z-A"}</span></button>
+        </div>
         {
           renderList?.map((game) => <Card key={game.id} game={game}/>)
         }
-        <button className="hover:cursor-pointer text-red-400" onClick={() => handleSort("title")}>Sort By Title --- {sortOrder === 1 ? "asc" : "desc"}</button>
-        <br></br>
-        <button className="hover:cursor-pointer text-red-400" onClick={() => handleSort("category")}>Sort By Category --- {sortOrder === 1 ? "asc" : "desc"}</button>
-        <br></br><br></br><br></br><br></br><br></br><br></br>
-        <input name="search" value={query} onChange={handleChange} type="text" placeholder="scrivi qui"/>
       </div>
     </>
   );
