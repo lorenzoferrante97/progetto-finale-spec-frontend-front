@@ -5,18 +5,22 @@ import { NavLink } from "react-router-dom";
 export default memo(function Card({ game }) {
 
 
-  const {id, title, category} = game;
+  const {id, title, category, coverUrl} = game;
 
   return (
     <>
-      <NavLink to={`/game/${id}`} className="rounded-lg col-span-full md:col-span-2 lg:col-span-4 bg-neutral-base-300 p-2 transition-base hover:bg-gradient-to-t hover:from-accent-soft/50 hover:to-neutral-base-300">
-        <div className="">
+      <NavLink to={`/game/${id}`} className="rounded-lg col-span-2 bg-neutral-base-300 p-1 transition-base hover:bg-gradient-to-t hover:from-accent-soft/50 hover:to-neutral-base-300">
+        <div className="flex flex-col gap-2">
 
           {/* image */}
-
-          <div className="flex flex-col gap-2">
-          <span className="font-body-base-bold text-neutral-text-high">{title}</span>
-          <Badge text={category} type="accent" className="w-fit"/>
+          <div className="relative">
+            <figure className="aspect-[2/3] overflow-hidden rounded-[12px]">
+              <img src={coverUrl} alt={title} className="image-responsive brightness-[115%] contrast-[105%]"/>
+            </figure>
+            <div className="absolute h-full bottom-0 left-0 p-2 bg-gradient-to-t from-neutral-base-300 to-transparent flex flex-col justify-end gap-2 w-full">
+              <Badge text={category} type="accent" className="w-fit"/>
+              <span className="font-body-s-bold text-neutral-text-high">{title}</span>
+            </div>
           </div>
 
         </div>
