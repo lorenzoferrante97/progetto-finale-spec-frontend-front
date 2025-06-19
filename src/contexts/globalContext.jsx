@@ -14,17 +14,18 @@ const GlobalProvider = ({ children }) => {
   const {getVideogames, getVideogame} = useFetch();
 
   // --- USE GAMES ---------------------------------------------------------------------------
-  const {games, dispatch} = useGames();
+  const {games, error, dispatch} = useGames();
+
+   // --- USE FORM ---------------------------------------------------------------------------
+   const {query, handleChange} = useForm(games?.allGames, dispatch);
 
   // --- USE SORT ---------------------------------------------------------------------------
-  const {sortedData, handleSort, sortBy, sortOrder} = useSort(games?.filteredGames?.length > 0 ? games?.filteredGames : games?.allGames, "title", "desc");
-
-  // --- USE FORM ---------------------------------------------------------------------------
-  const {query, handleChange} = useForm(games?.allGames, dispatch);
+  const {sortedData, handleSort, sortBy, sortOrder} = useSort((games?.filteredGames?.length > 0 && (query?.length > 0)) ? games?.filteredGames : games?.allGames, "title", "desc");
   
 
   const value = {
     games,
+    error,
     sortedData,
     sortBy,
     sortOrder,

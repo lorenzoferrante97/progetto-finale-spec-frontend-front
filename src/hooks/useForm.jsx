@@ -27,7 +27,12 @@ export default function useForm(array, dispatch) {
       const { title } = item;
       return title.trim().toLowerCase().includes(query.trim().toLowerCase());
     });
-    dispatch({type: 'filterGames', payload: filterRes});
+    if(filterRes.length !== 0) {
+      dispatch({type: 'filterGames', payload: filterRes});
+    } else {
+      dispatch({type: 'filterGames', payload: [], errorMessage: "Nessun risultato trovato"});
+    }
+    
 
   }, 500), []);
 

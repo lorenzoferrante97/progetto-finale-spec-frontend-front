@@ -6,6 +6,7 @@ export default function Home() {
 
   const {
     games,
+    error,
     dispatch,
     getVideogames,
     sortedData,
@@ -17,7 +18,7 @@ export default function Home() {
   } = useGlobalContext();
 
   // --- RENDER CONDIZIONALE ------------------------------------------------------------------
-  const renderList = games?.filteredGames?.length > 0 ? games?.filteredGames : games?.allGames;
+  const renderList = (games?.filteredGames?.length > 0 && (query?.length > 0)) ? games?.filteredGames : games?.allGames;
 
   useEffect(() => {
     (async () => {
@@ -45,11 +46,15 @@ export default function Home() {
 
       <div className="row-grid gap-x-2 gap-y-4 p-section bg-neutral-base-200 rounded-lg">
         <div className="col-span-full flex flex-wrap gap-2">
-          <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-1 max-lg:min-h-12" onClick={() => handleSort("title")}>Titolo <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "title") ? "A-Z" : "Z-A"}</span></button>
-          <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-1 max-lg:min-h-12" onClick={() => handleSort("category")}>Categoria <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "category") ? "A-Z" : "Z-A"}</span></button>
+          <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-2 max-lg:min-h-12" onClick={() => handleSort("title")}>Titolo <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "title") ? "A-Z" : "Z-A"}</span></button>
+          <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-2 max-lg:min-h-12" onClick={() => handleSort("category")}>Categoria <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "category") ? "A-Z" : "Z-A"}</span></button>
         </div>
         {
+          error?.bool ?
+          <p>{error?.message}</p>
+          : 
           renderList?.map((game) => <Card key={game.id} game={game}/>)
+          
         }
       </div>
     </>
