@@ -1,7 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../pages/sections/Header';
+import useScrollToTop from '../hooks/useScrollToTop';
 
 export default function DefaultLayout() {
+
+  useScrollToTop();
+
   return (
     <>
     <Header />
