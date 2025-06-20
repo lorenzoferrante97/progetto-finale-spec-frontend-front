@@ -1,3 +1,6 @@
+
+import Chooser from "../components/Chooser";
+
 export default function CompareDetail() {
   return (
     <>
@@ -8,10 +11,15 @@ export default function CompareDetail() {
         </div>
 
         {/* --- MAIN -------------------------------------------------------------- */}
-        <div className="col-span-full row-grid bg-neutral-base-300 rounded-lg p-4">
+        <div className="col-span-full row-grid bg-neutral-base-200 rounded-lg p-4 min-h-[60vh]">
           {/* --- FIRST SELECTOR ---------------- */}
-          <div className="col-span-2">
+          <div className="col-span-2 perfect-center md:col-span-4 lg:col-span-6">
+            <Chooser />
+          </div>
 
+          {/* --- SECOND SELECTOR ---------------- */}
+          <div className="col-span-2 perfect-center md:col-span-4 lg:col-span-6">
+            <Chooser />
           </div>
 
         </div>
