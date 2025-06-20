@@ -13,7 +13,7 @@ export default function useStorage() {
   const checkFavorite = (id) => {
     const storedItem = getFromStorage("preferiti");
     if(storedItem) {
-      const isFavorite = storedItem.some((item) => item.id === id);
+      const isFavorite = storedItem.some((item) => item.id === parseInt(id));
       setIsFavorite(isFavorite);
     }
     
@@ -31,9 +31,8 @@ export default function useStorage() {
     if(key && item) {
       const storedItem = getFromStorage(key);
       if(storedItem) {
-        storedItem.splice(storedItem.indexOf(item), 1);
-        localStorage.removeItem(key);
-        localStorage.setItem(key, JSON.stringify(storedItem));
+        const updatedItem = storedItem.filter((arrayItem) => arrayItem.id !== item.id);
+        localStorage.setItem(key, JSON.stringify(updatedItem));
         setIsFavorite(false);
         setFeedback("rimosso!");
         setTimeout(() => setFeedback(""), 3000);
