@@ -27,10 +27,10 @@ export default function Favorites({ show, setShow }) {
               favorites?.length > 0 ?
               favorites?.map((favorite) => {
               return (
-                <div key={favorite.id} className="col-span-2 lg:col-span-full flex flex-col lg:flex-row gap-2 bg-neutral-base-300/80 rounded-lg">
+                <div key={favorite.id} className="col-span-2 lg:col-span-6 flex flex-col gap-2">
                   <Card game={favorite} type="favorites" />
                   <div className="min-w-[60%] w-full">
-                  <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md w-full lg:w-fit" onClick={() => {removeFromStorage("preferiti", favorite); getFromStorage("preferiti");}}>Rimuovi</button>
+                  <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md w-full" onClick={() => {removeFromStorage("preferiti", favorite); getFromStorage("preferiti");}}>Rimuovi</button>
                   </div>
                 </div>
             )
