@@ -6,7 +6,7 @@ export default function useStorage() {
   // feedback storage
   const [feedback, setFeedback] = useState("");
 
-  const getFromStorage = (key, type = 'string') => {
+  const getFromStorage = (key, type) => {
     if(key) {
      switch(type) {
        case 'string':
@@ -17,13 +17,25 @@ export default function useStorage() {
     }
    }
 
+   const removeFromStorage = (key) => key && (
+
+    localStorage.removeItem(key),
+    setFeedback("rimosso!"),
+    setTimeout(() => setFeedback(""), 3000)
+
+  )
+
   const addToStorage = (key, value) => {
     if(value) {
 
       const storedItem = getFromStorage(key);
+
       if(storedItem) {
-        const updatedItem = [...storedItem, value];
-        localStorage.setItem(key, JSON.stringify(updatedItem));
+        console.log("preferiti esistenti: ", storedItem)
+        storedItem.push(value);
+        console.log("preferiti updated: ", storedItem)
+        localStorage.removeItem(key);
+        localStorage.setItem(key, JSON.stringify(storedItem));
         setFeedback("aggiunto!")
         setTimeout(() => setFeedback(""), 3000);
       } else {
@@ -33,14 +45,6 @@ export default function useStorage() {
       }
     }
   }
-
-  const removeFromStorage = (key) => key && (
-
-    localStorage.removeItem(key),
-    setFeedback("rimosso!"),
-    setTimeout(() => setFeedback(""), 3000)
-
-  )
 
   return {
     feedback,

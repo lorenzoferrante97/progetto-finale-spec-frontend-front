@@ -22,8 +22,6 @@ export default function Detail() {
 
   // suddividi description in paragrafi
   const descriptionParts = description?.split(".");
-  console.log(description)
-
   
 
 
