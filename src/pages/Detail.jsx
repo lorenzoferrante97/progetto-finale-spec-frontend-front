@@ -9,7 +9,16 @@ export default function Detail() {
   const {id} = useParams();
 
   const {dispatch, getVideogame} = useGlobalContext();
-  const { title, backdropUrl, category, rating, description } = useGlobalContext().games.activeGame;
+  const { title,
+    backdropUrl,
+    category,
+    rating,
+    description,
+    platform,
+    releaseYear,
+    developer,
+    gameMode,
+    theme } = useGlobalContext().games.activeGame;
 
   // suddividi description in paragrafi
   const descriptionParts = description?.split(".");
@@ -49,18 +58,69 @@ export default function Detail() {
           <StarIcon weight="fill" size={32} className="text-accent-text-low" />
         </div>
       </div>
-      {/* --- DESCRIPTION ------------------- */}
-      <div className="p-section mb-10 flex flex-col gap-4 p-4">
-        {/* <p>{description}</p> */}
-        {
-          descriptionParts?.map( (text, index, array) => {
-            if(index !== array.length - 1) {
-              if ((index == 0) || ((index % 2 == 0) && (index !== 0))) {
-                return <p key={index}>{text}. {array[index + 1]}</p>;
+      {/* --- INFO --------------------------------------------------------------- */}
+      <div className="p-section mb-10 row-grid gap-y-8 gap-x-20 p-4">
+        {/* --- DESCRIPTION ------------------- */}
+        <div className="flex flex-col gap-4 col-span-full lg:col-span-7">
+          {
+            descriptionParts?.map( (text, index, array) => {
+              if(index !== array.length - 1) {
+                if ((index == 0) || ((index % 2 == 0) && (index !== 0))) {
+                  return <p className="text-neutral-text-low" key={index}>{text}. {array[index + 1]}</p>;
+                }
               }
-            }
-          })
-        }
+            })
+          }
+        </div>
+        <div className="flex flex-col gap-6 col-span-full lg:col-span-5">
+          {/* --- PLATFORM ---------------------- */}
+          <div className="flex flex-col gap-2">
+            <span className="font-body-m-regular text-neutral-text-high">Piattaforme</span>
+            <div className="flex flex-wrap gap-1">
+              {
+                platform?.map( (platform, i) => <Badge key={i} text={platform} type="accent" className="w-fit"/> )
+              }
+            </div>
+          </div>
+
+          {/* --- THEMES ---------------------- */}
+          <div className="flex flex-col gap-2">
+            <span className="font-body-m-regular text-neutral-text-high">Temi Principali</span>
+            <div className="flex flex-wrap gap-1">
+              {
+                theme?.map( (theme, i) => <Badge key={i} text={theme} type="accent" className="w-fit"/> )
+              }
+            </div>
+          </div>
+
+          {/* --- GAME MODE ---------------------- */}
+          <div className="flex flex-col gap-2">
+            <span className="font-body-m-regular text-neutral-text-high">Modalità di gioco</span>
+            <div className="flex flex-wrap gap-1">
+              {
+                gameMode?.map( (mode, i) => <Badge key={i} text={mode} type="accent" className="w-fit"/> )
+              }
+            </div>
+          </div>
+
+          {/* --- DEVELOPER ---------------------- */}
+          <div className="flex flex-col gap-2">
+            <span className="font-body-m-regular text-neutral-text-high">Sviluppatore</span>
+            <div className="flex flex-wrap gap-1">
+            <Badge text={developer} type="accent" className="w-fit"/>
+            </div>
+          </div>
+
+          {/* --- RELEASE YEAR ---------------------- */}
+          <div className="flex flex-col gap-2">
+            <span className="font-body-m-regular text-neutral-text-high">Anno di uscita</span>
+            <div className="flex flex-wrap gap-1">
+            <Badge text={releaseYear} type="accent" className="w-fit"/>
+            </div>
+          </div>
+          
+        </div>
+        
       </div>
     </>
   );
