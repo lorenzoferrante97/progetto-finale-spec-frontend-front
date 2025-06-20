@@ -5,12 +5,12 @@ import Card from "../../components/Card";
 
 export default function Favorites({ show, setShow }) {
 
-  const { getFromStorage, favorites } = useGlobalContext();
+  const { getFromStorage, favorites, removeFromStorage } = useGlobalContext();
 
   useEffect(() => {
     show && getFromStorage("preferiti");
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [show]);
+  }, [show, favorites]);
 
   return (
     <>
@@ -25,7 +25,16 @@ export default function Favorites({ show, setShow }) {
           <div className="row-grid bg-neutral-base-300/50 px-4 py-8 rounded-lg gap-4">
             {
               favorites?.length > 0 ?
-              favorites?.map((favorite) => <Card key={favorite.id} game={favorite} type="favorites" /> )
+              favorites?.map((favorite) => {
+              return (
+                <div key={favorite.id} className="col-span-2 lg:col-span-full flex flex-col gap-2">
+                  <Card game={favorite} type="favorites" />
+                  <div>
+                  <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md" onClick={() => removeFromStorage("preferiti", favorite)}>Rimuovi</button>
+                  </div>
+                </div>
+            )
+            } )
               :
               <p className="col-span-full">Non hai aggiunto preferiti alla lista.</p>
             }
