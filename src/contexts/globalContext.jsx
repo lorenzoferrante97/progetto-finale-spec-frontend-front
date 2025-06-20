@@ -24,7 +24,7 @@ const GlobalProvider = ({ children }) => {
   const {sortedData, handleSort, sortBy, sortOrder} = useSort((games?.filteredGames?.length > 0 && (query?.length > 0)) ? games?.filteredGames : games?.allGames, "title", "desc");
 
   // --- USE STORAGE ---------------------------------------------------------------------------
-  const {feedback, isFavorite, addToStorage, removeFromStorage, getFromStorage, checkFavorite} = useStorage();
+  const {feedback, isFavorite, favorites,addToStorage, removeFromStorage, getFromStorage, checkFavorite} = useStorage();
   
 
   const value = {
@@ -36,6 +36,7 @@ const GlobalProvider = ({ children }) => {
     query,
     feedback,
     isFavorite,
+    favorites,
     handleSort,
     dispatch,
     getVideogames,

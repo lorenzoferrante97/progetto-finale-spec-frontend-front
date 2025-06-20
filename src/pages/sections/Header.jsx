@@ -23,7 +23,7 @@ const [showFavorites, setShowFavorites] = useState(false);
         </nav>
       </div>
       <Portal domElement="#root">
-        <Favorites show={showFavorites}/>
+        <Favorites show={showFavorites} setShow={setShowFavorites}/>
       </Portal>
     </>
   );

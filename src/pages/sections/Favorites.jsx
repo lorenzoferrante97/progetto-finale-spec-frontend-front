@@ -1,22 +1,16 @@
 import { XIcon } from "@phosphor-icons/react"; 
 import { useGlobalContext } from "../../contexts/globalContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Card from "../../components/Card";
 
-export default function Favorites({ show }) {
+export default function Favorites({ show, setShow }) {
 
-  const { getFromStorage } = useGlobalContext();
-
-  // favorites
-  const [favorites, setFavorites] = useState([]);
+  const { getFromStorage, favorites } = useGlobalContext();
 
   useEffect(() => {
-    const storedFavorites = getFromStorage("preferiti");
-    if(storedFavorites) {
-      setFavorites(storedFavorites);
-    }
+    show && getFromStorage("preferiti");
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [show]);
 
   return (
     <>
@@ -25,12 +19,15 @@ export default function Favorites({ show }) {
           {/* HEADER ---------------------------- */}
           <div className="flex items-center justify-between">
             <span className="font-h2">Preferiti</span>
-            <button className="lg:hover:cursor-pointer perfect-center transition-base aspect-square w-10 rounded-full bg-error-bg text-error-text"><XIcon size={20} weight="bold" /></button>
+            <button onClick={() => setShow(false)} className="lg:hover:cursor-pointer perfect-center transition-base aspect-square w-10 rounded-full bg-error-bg text-error-text"><XIcon size={20} weight="bold" /></button>
           </div>
           {/* MAIN ---------------------------- */}
           <div className="row-grid bg-neutral-base-300/50 px-4 py-8 rounded-lg gap-4">
             {
-              favorites.map((favorite) => <Card key={favorite.id} game={favorite} type="favorites" /> )
+              favorites?.length > 0 ?
+              favorites?.map((favorite) => <Card key={favorite.id} game={favorite} type="favorites" /> )
+              :
+              <p className="col-span-full">Non hai aggiunto preferiti alla lista.</p>
             }
           </div>
         </div>

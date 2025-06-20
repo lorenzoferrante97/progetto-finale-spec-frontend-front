@@ -3,6 +3,9 @@ import { useState } from "react";
 
 export default function useStorage() {
 
+  // favorites
+    const [favorites, setFavorites] = useState([]);
+
   // feedback storage
   const [feedback, setFeedback] = useState("");
   const [isFavorite, setIsFavorite] = useState(false);
@@ -16,14 +19,11 @@ export default function useStorage() {
     
   }
 
-  const getFromStorage = (key, type) => {
+  const getFromStorage = (key) => {
     if(key) {
-     switch(type) {
-       case 'string':
-         return localStorage.getItem(key);
-       default:
-         return JSON.parse(localStorage.getItem(key));
-     }
+      const storedItem = JSON.parse(localStorage.getItem(key));
+      setFavorites(storedItem);
+      return storedItem;
     }
    }
 
@@ -65,6 +65,7 @@ export default function useStorage() {
   return {
     feedback,
     isFavorite,
+    favorites,
     addToStorage,
     removeFromStorage,
     getFromStorage,
