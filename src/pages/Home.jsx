@@ -44,7 +44,7 @@ export default function Home() {
         <input name="search" value={query} onChange={handleChange} type="text" placeholder="scrivi qui" className="w-full px-4 py-2 min-h-12 bg-neutral-base-300 rounded-md focus-state font-body-base-regular"/>
       </div>
 
-      <div className="row-grid gap-x-2 gap-y-4 p-section bg-neutral-base-200 rounded-lg">
+      <div className="row-grid gap-x-2 gap-y-10 p-section bg-neutral-base-200 rounded-lg">
         <div className="col-span-full flex flex-wrap gap-2">
           <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-2 max-lg:min-h-12" onClick={() => handleSort("title")}>Titolo <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "title") ? "A-Z" : "Z-A"}</span></button>
           <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-2 max-lg:min-h-12" onClick={() => handleSort("category")}>Categoria <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "category") ? "A-Z" : "Z-A"}</span></button>
