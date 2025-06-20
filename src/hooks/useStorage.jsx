@@ -5,6 +5,16 @@ export default function useStorage() {
 
   // feedback storage
   const [feedback, setFeedback] = useState("");
+  const [isfavorite, setIsFavorite] = useState(false);
+
+  const checkFavorite = (id) => {
+    const storedItem = getFromStorage("preferiti");
+    if(storedItem) {
+      const isFavorite = storedItem.some((item) => item.id === id);
+      setIsFavorite(isFavorite);
+    }
+    
+  }
 
   const getFromStorage = (key, type) => {
     if(key) {
@@ -17,13 +27,18 @@ export default function useStorage() {
     }
    }
 
-   const removeFromStorage = (key) => key && (
-
-    localStorage.removeItem(key),
-    setFeedback("rimosso!"),
-    setTimeout(() => setFeedback(""), 3000)
-
-  )
+   const removeFromStorage = (key, item) => {
+    if(key && item) {
+      const storedItem = getFromStorage(key);
+      if(storedItem) {
+        storedItem.splice(storedItem.indexOf(item), 1);
+        localStorage.removeItem(key);
+        localStorage.setItem(key, JSON.stringify(storedItem));
+        setFeedback("rimosso!");
+        setTimeout(() => setFeedback(""), 3000);
+      }
+    }
+   }
 
   const addToStorage = (key, value) => {
     if(value) {
@@ -31,9 +46,7 @@ export default function useStorage() {
       const storedItem = getFromStorage(key);
 
       if(storedItem) {
-        console.log("preferiti esistenti: ", storedItem)
         storedItem.push(value);
-        console.log("preferiti updated: ", storedItem)
         localStorage.removeItem(key);
         localStorage.setItem(key, JSON.stringify(storedItem));
         setFeedback("aggiunto!")
@@ -48,9 +61,11 @@ export default function useStorage() {
 
   return {
     feedback,
+    isfavorite,
     addToStorage,
     removeFromStorage,
     getFromStorage,
+    checkFavorite
   };
 
 }
