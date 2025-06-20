@@ -5,6 +5,7 @@ import useFetch from "../hooks/useFetch";
 import useGames from "../hooks/useGames";
 import useSort from "../hooks/useSort";
 import useForm from "../hooks/useForm";
+import useStorage from "../hooks/useStorage";
 
 const GlobalContext = createContext();
 
@@ -21,6 +22,9 @@ const GlobalProvider = ({ children }) => {
 
   // --- USE SORT ---------------------------------------------------------------------------
   const {sortedData, handleSort, sortBy, sortOrder} = useSort((games?.filteredGames?.length > 0 && (query?.length > 0)) ? games?.filteredGames : games?.allGames, "title", "desc");
+
+  // --- USE STORAGE ---------------------------------------------------------------------------
+  const {addToStorage, removeFromStorage, getFromStorage} = useStorage();
   
 
   const value = {
@@ -34,7 +38,10 @@ const GlobalProvider = ({ children }) => {
     dispatch,
     getVideogames,
     getVideogame,
-    handleChange
+    handleChange,
+    addToStorage,
+    removeFromStorage,
+    getFromStorage
   };
 
   return (

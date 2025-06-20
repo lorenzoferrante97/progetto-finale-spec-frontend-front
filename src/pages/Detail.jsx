@@ -48,15 +48,23 @@ export default function Detail() {
           <h1 className="font-h1 backdrop-blur-md p-2 overflow-hidden rounded-md">{title}</h1>
         </div>
       </div>
-      {/* --- RATING ------------------------ */}
-      <div className="p-section my-10 flex justify-between items-center gap-4 bg-neutral-base-300 rounded-lg p-4">
-        <div className="flex flex-col gap-2">
-          <span className="font-body-s-regular text-neutral-text-low">Valutato dai giocatori</span>
-          <span className="font-h1 text-accent-text-low">{rating} <span className="font-body-l-bold">/ 10</span></span>
-        </div>
-        <div className="aspect-square bg-accent-soft p-3 rounded-md">
-          <StarIcon weight="fill" size={32} className="text-accent-text-low" />
-        </div>
+      {/* --- RATING + ACTIONS ---------------------------------------------------------- */}
+      <div className="p-section my-10 flex flex-col md:flex-row md:justify-between md:items-center gap-4 bg-neutral-base-300 rounded-lg p-4">
+        {/* --- RATING ------------------------ */}
+          <div className="flex flex-col gap-2">
+            <span className="font-body-s-regular text-neutral-text-low">Valutato dai giocatori</span>
+            <div className="flex items-center gap-2">
+              <div className="aspect-square bg-accent-base-200 p-3 rounded-md">
+                <StarIcon weight="fill" size={32} className="text-accent-solid" />
+              </div>
+              <span className="font-h1 text-accent-text-low">{rating} <span className="font-body-l-bold">/ 10</span></span>
+            </div>
+          </div>
+          {/* --- ACTIONS --------------------- */}
+          <div className="flex items-center gap-2">
+            <button className="transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md">Aggiungi ai Preferiti</button>
+
+          </div>
       </div>
       {/* --- INFO --------------------------------------------------------------- */}
       <div className="p-section mb-10 row-grid gap-y-8 gap-x-20 p-4">

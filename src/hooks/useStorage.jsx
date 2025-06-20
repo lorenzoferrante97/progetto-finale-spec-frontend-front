@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 export default function useStorage() {
 
@@ -25,4 +24,11 @@ export default function useStorage() {
     }
    }
   }
+
+  return {
+    addToStorage,
+    removeFromStorage,
+    getFromStorage,
+  };
+
 }
