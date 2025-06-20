@@ -8,7 +8,7 @@ export default function Detail() {
 
   const {id} = useParams();
 
-  const {dispatch, getVideogame} = useGlobalContext();
+  const {games, dispatch, getVideogame, addToStorage, feedback} = useGlobalContext();
   const { title,
     backdropUrl,
     category,
@@ -62,7 +62,7 @@ export default function Detail() {
           </div>
           {/* --- ACTIONS --------------------- */}
           <div className="flex items-center gap-2">
-            <button className="transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md">Aggiungi ai Preferiti</button>
+            <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md" onClick={() => addToStorage("preferiti", games.activeGame)}>{feedback !== "" ? feedback : "Aggiungi ai Preferiti"}</button>
 
           </div>
       </div>

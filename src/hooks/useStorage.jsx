@@ -1,31 +1,49 @@
 
+import { useState } from "react";
+
 export default function useStorage() {
 
-  const addToStorage = (value) => {
+  // feedback storage
+  const [feedback, setFeedback] = useState("");
+
+  const getFromStorage = (key, type = 'string') => {
+    if(key) {
+     switch(type) {
+       case 'string':
+         return localStorage.getItem(key);
+       default:
+         return JSON.parse(localStorage.getItem(key));
+     }
+    }
+   }
+
+  const addToStorage = (key, value) => {
     if(value) {
-      if(typeof value === 'string') {
-        localStorage.setItem('value', value);
+
+      const storedItem = getFromStorage(key);
+      if(storedItem) {
+        const updatedItem = [...storedItem, value];
+        localStorage.setItem(key, JSON.stringify(updatedItem));
+        setFeedback("aggiunto!")
+        setTimeout(() => setFeedback(""), 3000);
       } else {
-        localStorage.setItem('value', JSON.stringify(value));
+        localStorage.setItem(key, JSON.stringify([value]));
+        setFeedback("aggiunto!")
+        setTimeout(() => setFeedback(""), 3000);
       }
     }
   }
 
-  const removeFromStorage = (value) => value && localStorage.removeItem('value');
- 
+  const removeFromStorage = (key) => key && (
 
-  const getFromStorage = (value, type = 'string') => {
-   if(value) {
-    switch(type) {
-      case 'string':
-        return localStorage.getItem(value);
-      default:
-        return JSON.parse(localStorage.getItem(value));
-    }
-   }
-  }
+    localStorage.removeItem(key),
+    setFeedback("rimosso!"),
+    setTimeout(() => setFeedback(""), 3000)
+
+  )
 
   return {
+    feedback,
     addToStorage,
     removeFromStorage,
     getFromStorage,
