@@ -9,7 +9,7 @@ export default memo(function Card({ game }) {
 
   return (
     <>
-      <NavLink to={`/game/${id}`} className="rounded-lg col-span-2 bg-neutral-base-300 p-1 transition-base hover:bg-gradient-to-t hover:from-accent-soft/50 hover:to-neutral-base-300">
+      <NavLink to={`/videogame/${id}`} className="rounded-lg col-span-2 bg-neutral-base-300 p-1 transition-base hover:bg-gradient-to-t hover:from-accent-soft/50 hover:to-neutral-base-300">
         <div className="flex flex-col gap-2">
 
           {/* image */}

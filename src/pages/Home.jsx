@@ -51,7 +51,7 @@ export default function Home() {
         </div>
         {
           error?.bool ?
-          <p>{error?.message}</p>
+          <p className="min-w-60">{error?.message}</p>
           : 
           renderList?.map((game) => <Card key={game.id} game={game}/>)
           
