@@ -5,7 +5,7 @@ export default function useStorage() {
 
   // feedback storage
   const [feedback, setFeedback] = useState("");
-  const [isfavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const checkFavorite = (id) => {
     const storedItem = getFromStorage("preferiti");
@@ -34,6 +34,7 @@ export default function useStorage() {
         storedItem.splice(storedItem.indexOf(item), 1);
         localStorage.removeItem(key);
         localStorage.setItem(key, JSON.stringify(storedItem));
+        setIsFavorite(false);
         setFeedback("rimosso!");
         setTimeout(() => setFeedback(""), 3000);
       }
@@ -49,10 +50,12 @@ export default function useStorage() {
         storedItem.push(value);
         localStorage.removeItem(key);
         localStorage.setItem(key, JSON.stringify(storedItem));
+        setIsFavorite(true);
         setFeedback("aggiunto!")
         setTimeout(() => setFeedback(""), 3000);
       } else {
         localStorage.setItem(key, JSON.stringify([value]));
+        setIsFavorite(true);
         setFeedback("aggiunto!")
         setTimeout(() => setFeedback(""), 3000);
       }
@@ -61,7 +64,7 @@ export default function useStorage() {
 
   return {
     feedback,
-    isfavorite,
+    isFavorite,
     addToStorage,
     removeFromStorage,
     getFromStorage,

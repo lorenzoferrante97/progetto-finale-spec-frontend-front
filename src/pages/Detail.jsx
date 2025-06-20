@@ -8,7 +8,7 @@ export default function Detail() {
 
   const {id} = useParams();
 
-  const {games, dispatch, getVideogame, addToStorage, feedback, isfavorite, checkFavorite, removeFromStorage} = useGlobalContext();
+  const {games, dispatch, getVideogame, addToStorage, feedback, isFavorite, checkFavorite, removeFromStorage} = useGlobalContext();
   const { title,
     backdropUrl,
     category,
@@ -24,10 +24,12 @@ export default function Detail() {
   const descriptionParts = description?.split(".");
 
   // render add or remove from favorites button
-  const favoritesButton = isfavorite ?
-  <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md" onClick={() => addToStorage("preferiti", games.activeGame)}>{feedback !== "" ? feedback : "Aggiungi ai Preferiti"}</button>
-  :
+  console.log(isFavorite);
+  const favoritesButton = isFavorite ?
   <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md" onClick={() => removeFromStorage("preferiti", games.activeGame)}>{feedback !== "" ? feedback : "Rimuovi dai Preferiti"}</button>
+  :
+  <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md" onClick={() => addToStorage("preferiti", games.activeGame)}>{feedback !== "" ? feedback : "Aggiungi ai Preferiti"}</button>
+
 
   
 
@@ -42,10 +44,13 @@ export default function Detail() {
         }
       })();
 
-      checkFavorite(id);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
+
+    useEffect(() => {
+      checkFavorite(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id])
 
   return (
     <>
@@ -70,8 +75,7 @@ export default function Detail() {
           </div>
           {/* --- ACTIONS --------------------- */}
           <div className="flex items-center gap-2">
-            <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md" onClick={() => addToStorage("preferiti", games.activeGame)}>{feedback !== "" ? feedback : "Aggiungi ai Preferiti"}</button>
-
+            {favoritesButton}
           </div>
       </div>
       {/* --- INFO --------------------------------------------------------------- */}
