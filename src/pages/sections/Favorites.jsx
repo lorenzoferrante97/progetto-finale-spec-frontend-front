@@ -22,14 +22,14 @@ export default function Favorites({ show, setShow }) {
             <button onClick={() => setShow(false)} className="lg:hover:cursor-pointer perfect-center transition-base aspect-square w-10 rounded-full bg-error-bg text-error-text"><XIcon size={20} weight="bold" /></button>
           </div>
           {/* MAIN ---------------------------- */}
-          <div className="row-grid bg-neutral-base-300/50 px-4 py-8 rounded-lg gap-4">
+          <div className="row-grid bg-neutral-base-300/50 px-4 py-8 rounded-lg gap-4 scroll-auto overflow-y-auto h-[72vh]">
             {
               favorites?.length > 0 ?
               favorites?.map((favorite) => {
               return (
-                <div key={favorite.id} className="col-span-2 lg:col-span-full flex flex-col gap-2">
+                <div key={favorite.id} className="col-span-2 lg:col-span-full flex flex-col lg:flex-row gap-2">
                   <Card game={favorite} type="favorites" />
-                  <div>
+                  <div className="min-w-[60%]">
                   <button className="lg:hover:cursor-pointer transition-base font-body-base-bold min-h-12 lg:hover:bg-accent-solid lg:hover:border-accent-solid lg:hover:text-white w-full md:w-fit border-2 border-accent-border-strong text-accent-text-high px-4 py-2 rounded-md" onClick={() => removeFromStorage("preferiti", favorite)}>Rimuovi</button>
                   </div>
                 </div>
