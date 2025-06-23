@@ -5,7 +5,7 @@ export default function useForm(array, dispatch) {
 
   // --- QUERY -----------------------------------------------------------------------------
   const [query, setQuery] = useState('');
-  // const [filteredArray, setFilteredArray] = useState(array);
+  const [category, setCategory] = useState('');
 
   // --- DEBOUNCE --------------------------------------------------------------------------
   const debounce = (callback, delay) => {
@@ -20,9 +20,10 @@ export default function useForm(array, dispatch) {
     };
   }
 
-  const { getVideogamesByTitle } = useFetch();
+  const { getVideogamesByTitle, getVideogamesByCategory, getVideogamesByTitleAndCategory } = useFetch();
 
   const handleChange = (e) => setQuery(e.target.value);
+  const handleCategoryChange = (e) => setCategory(e.target.value);
 
   // const filterValues = useCallback(debounce((query, array) => {
   //   const filterRes = array?.filter((item) => {
@@ -37,7 +38,7 @@ export default function useForm(array, dispatch) {
   // }, 500), []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const filterValues = useCallback(
+  const filterValuesByTitle = useCallback(
     debounce(async (title) => {
       try {
         const res = await getVideogamesByTitle(title);
@@ -45,15 +46,34 @@ export default function useForm(array, dispatch) {
       } catch (err) {
         console.error('Error to fetch videogames by title:', err.message);
       }
-    }, 500), []);
+    }, 500),
+  []);
+
+  const filterValuesByCategory = useCallback(
+    debounce(async (category) => {
+      try {
+        const res = await getVideogamesByCategory(category);
+        dispatch({ type: "filterGames", payload: res });
+      } catch (err) {
+        console.error('Error to fetch videogames by category:', err.message);
+      }
+    }, 500),
+  []);
 
    useEffect(() => {
      if(query.length !== 0 && array.length !== 0) {
-       filterValues(query);
+       filterValuesByTitle(query);
      }
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [query]);
  
+   useEffect(() => {
+     if(category.length !== 0 && array.length !== 0) {
+       filterValuesByCategory(category);
+     }
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [category]);
+ 
   
-  return {query, handleChange};
+  return {query, handleChange, category, handleCategoryChange};
 }
