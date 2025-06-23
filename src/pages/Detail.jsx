@@ -64,19 +64,20 @@ export default function Detail() {
       {/* --- RATING + ACTIONS ---------------------------------------------------------- */}
       <div className="p-section my-10 flex flex-col md:flex-row md:justify-between md:items-center gap-4 bg-neutral-base-300 rounded-lg p-4">
         {/* --- RATING ------------------------ */}
-          <div className="flex flex-col gap-2">
-            <span className="font-body-s-regular text-neutral-text-low">Valutato dai giocatori</span>
-            <div className="flex items-center gap-2">
-              <div className="aspect-square bg-accent-base-200 p-3 rounded-md">
-                <StarIcon weight="fill" size={32} className="text-accent-solid" />
-              </div>
-              <span className="font-h1 text-accent-text-low">{rating} <span className="font-body-l-bold">/ 10</span></span>
-            </div>
-          </div>
-          {/* --- ACTIONS --------------------- */}
+        <div className="flex flex-col gap-2">
+          <span className="font-body-s-regular text-neutral-text-low">Valutato dai giocatori</span>
           <div className="flex items-center gap-2">
-            {favoritesButton}
+            <div className="aspect-square bg-accent-base-200 p-3 rounded-md">
+              <StarIcon weight="fill" size={32} className="text-accent-solid" />
+            </div>
+            <span className="font-h1 text-accent-text-low">{rating} <span className="font-body-l-bold">/ 10</span></span>
           </div>
+        </div>
+        {/* --- ACTIONS --------------------- */}
+        <div className="flex items-center gap-2">
+          {favoritesButton}
+        </div>
+
       </div>
       {/* --- INFO --------------------------------------------------------------- */}
       <div className="p-section mb-10 row-grid gap-y-8 gap-x-20 p-4">
