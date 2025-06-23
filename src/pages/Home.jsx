@@ -1,6 +1,7 @@
 import { useGlobalContext } from "../contexts/globalContext";
 import { useEffect } from "react";
 import Card from "../components/Card";
+import Filters from "./sections/Filters";
 
 export default function Home() {
 
@@ -45,6 +46,10 @@ export default function Home() {
       </div>
 
       <div className="row-grid gap-x-2 gap-y-10 p-section bg-neutral-base-200 rounded-lg">
+        {/* --- FILTERS ---------------- */}
+        <div className="col-span-full">
+          <Filters items={games?.allGames?.map((game) => game.category)} />
+        </div>
         <div className="col-span-full flex flex-wrap gap-2">
           <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-2 max-lg:min-h-12" onClick={() => handleSort("title")}>Titolo <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "title") ? "A-Z" : "Z-A"}</span></button>
           <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-2 max-lg:min-h-12" onClick={() => handleSort("category")}>Categoria <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "category") ? "A-Z" : "Z-A"}</span></button>

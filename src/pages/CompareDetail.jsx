@@ -28,7 +28,7 @@ const { games, dispatch, getVideogames } = useGlobalContext();
         </div>
 
         {/* --- MAIN -------------------------------------------------------------- */}
-        <div className={`col-span-full md:col-start-2 md:col-span-6 lg:col-start-3 lg:col-span-8 row-grid bg-neutral-base-200 rounded-lg p-2 lg:p-4 gap-2 ${games?.comparedGames?.length === 0 ? 'h-fit' : 'min-h-[60vh]'}`}>
+        <div className={`col-span-full md:col-start-2 md:col-span-6 lg:col-start-3 lg:col-span-8 row-grid bg-neutral-base-200 rounded-lg p-2 lg:p-4 gap-2 ${(Object.keys(games?.comparedGames[0]).length === 0 && Object.keys(games?.comparedGames[1]).length === 0) ? 'h-fit' : 'min-h-[60vh]'}`}>
           {/* --- FIRST SELECTOR ---------------- */}
           <div className="col-span-2 flex flex-col md:col-span-4 lg:col-span-6 rounded-lg">
             {
