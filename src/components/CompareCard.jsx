@@ -20,11 +20,11 @@ export default function CompareCard({ game }) {
           <h2 className="font-h6 font-semibold">{game?.title}</h2>
         </div>
         {/* --- CATEGORY ---------------- */}
-        <div className="h-44 flex items-center border-b border-neutral-border/40 px-2">
+        <div className="h-44 flex items-center md:perfect-center border-b border-neutral-border/40 px-2">
           <Badge text={game?.category} type="accent" />
         </div>
         {/* --- PLATFORM ---------------- */}
-        <div className="h-44 flex flex-col gap-1 items-start justify-center border-b border-neutral-border/40 px-2">
+        <div className="h-44 flex flex-col gap-1 items-start justify-center md:perfect-center border-b border-neutral-border/40 px-2">
           {
             game?.platform?.map((platform) => (
               <Badge key={platform} text={platform} type="accent" />
@@ -32,7 +32,7 @@ export default function CompareCard({ game }) {
           }
         </div>
         {/* --- THEME ---------------- */}
-        <div className="h-44 flex flex-col gap-1 items-start justify-center border-b border-neutral-border/40 px-2">
+        <div className="h-44 flex flex-col gap-1 items-start justify-center md:perfect-center border-b border-neutral-border/40 px-2">
           {
             game?.theme?.map((theme) => (
               <Badge key={theme} text={theme} type="accent" />
@@ -40,11 +40,11 @@ export default function CompareCard({ game }) {
           }
         </div>
         {/* --- DEVELOPER ---------------- */}
-        <div className="h-44 flex items-center border-b border-neutral-border/40 px-2">
+        <div className="h-44 flex items-center md:perfect-center border-b border-neutral-border/40 px-2">
           <Badge text={game?.developer} type="accent" />
         </div>
         {/* --- GAME MODE ---------------- */}
-        <div className="h-44 flex flex-col gap-1 items-start justify-center border-b border-neutral-border/40 px-2">
+        <div className="h-44 flex flex-col gap-1 items-start justify-center md:perfect-center border-b border-neutral-border/40 px-2">
           {
             game?.gameMode?.map((gameMode) => (
               <Badge key={gameMode} text={gameMode} type="accent" />
@@ -52,7 +52,7 @@ export default function CompareCard({ game }) {
           }
         </div>
         {/* --- RELEASE YEAR ---------------- */}
-        <div className="h-44 flex items-center border-b border-neutral-border/40 px-2">
+        <div className="h-44 flex items-center md:perfect-center border-b border-neutral-border/40 px-2">
           <Badge text={game?.releaseYear} type="accent" />
         </div>
         {/* --- DESCRIPTION ---------------- */}
