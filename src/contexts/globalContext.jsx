@@ -12,7 +12,7 @@ const GlobalContext = createContext();
 const GlobalProvider = ({ children }) => {
 
   // --- USE FETCH ---------------------------------------------------------------------------
-  const {getVideogames, getVideogame} = useFetch();
+  const {getVideogames, getVideogame, getVideogamesByTitle, getVideogamesByCategory, getVideogamesByTitleAndCategory} = useFetch();
 
   // --- USE GAMES ---------------------------------------------------------------------------
   const {games, error, dispatch} = useGames();
@@ -45,7 +45,10 @@ const GlobalProvider = ({ children }) => {
     addToStorage,
     removeFromStorage,
     getFromStorage,
-    checkFavorite
+    checkFavorite,
+    getVideogamesByTitle,
+    getVideogamesByCategory,
+    getVideogamesByTitleAndCategory
   };
 
   return (
