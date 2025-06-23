@@ -41,6 +41,12 @@ export default function Home() {
 
   return (
     <>
+      {/* --- HERO ------------------------------------------------------------- */}
+      <div className="min-h-[40vh]">
+        <h1 className="font-h1">Scopri e confronta i tuoi videogiochi preferiti</h1>
+      </div>
+    
+      {/* --- SEARCH ------------------------------------------------------------- */}
       <div className="p-section flex flex-col gap-2 font-body-base-bold">
         <label htmlFor="search">Cerca per titolo</label>
         <input name="search" value={query} onChange={handleChange} type="text" placeholder="scrivi qui" className="w-full px-4 py-2 min-h-12 bg-neutral-base-300 rounded-md focus-state font-body-base-regular"/>
