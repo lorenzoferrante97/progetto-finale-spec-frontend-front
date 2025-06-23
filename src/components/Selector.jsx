@@ -1,4 +1,6 @@
-export default function Selector({games}) {
+import { memo } from "react";
+
+export default memo(function Selector({games}) {
 
   return (
     <>
@@ -12,4 +14,4 @@ export default function Selector({games}) {
       </select>
     </>
   );
-}
+});
