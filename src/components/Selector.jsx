@@ -3,15 +3,21 @@ import { useGlobalContext } from "../contexts/globalContext";
 
 export default memo(function Selector({games}) {
 
-  const { dispatch } = useGlobalContext();
+  const { dispatch, getVideogame } = useGlobalContext();
 
   // get selected videogame
   const handleChange = (e) => {
-    const selectedGame = games?.find((game) => game.id === parseInt(e.target.value));
-    if(selectedGame) {
-      dispatch({type: 'compareGames', payload: selectedGame});
-    }
-    
+    // const selectedGame = games?.find((game) => game.id === parseInt(e.target.value));
+    (async () => {
+      try {
+        const res = await getVideogame(parseInt(e.target.value));
+        if(res?.videogame) {
+          dispatch({type: 'compareGames', payload: res.videogame});
+        }
+      } catch (err) {
+        console.error('Errore durante il recupero:', err.message);
+      }
+    })();
   }
 
   return (
