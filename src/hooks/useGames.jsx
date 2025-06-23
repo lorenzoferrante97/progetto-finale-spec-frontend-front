@@ -30,11 +30,13 @@ const reducer = (state, action) => {
           setError({bool: true, message: action.errorMessage});
           return {...state, filteredGames: action.payload};
         }
+    case 'compareGames':
+      return {...state, comparedGames: [...state.comparedGames, action.payload]};
       
   }
 }
 
-const [games, dispatch] = useReducer(reducer, {allGames: [], filteredGames: [], activeGame: {}});
+const [games, dispatch] = useReducer(reducer, {allGames: [], filteredGames: [], activeGame: {}, comparedGames: []});
 
   return {games, error, dispatch};
 }
