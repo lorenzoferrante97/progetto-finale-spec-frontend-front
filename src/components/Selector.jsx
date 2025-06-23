@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { useGlobalContext } from "../contexts/globalContext";
 
-export default memo(function Selector({games}) {
+export default memo(function Selector({ games, position }) {
 
   const { dispatch, getVideogame } = useGlobalContext();
 
@@ -12,7 +12,7 @@ export default memo(function Selector({games}) {
       try {
         const res = await getVideogame(parseInt(e.target.value));
         if(res?.videogame) {
-          dispatch({type: 'compareGames', payload: res.videogame});
+          dispatch({type: 'compareGames', payload: res.videogame, position: position});
         }
       } catch (err) {
         console.error('Errore durante il recupero:', err.message);

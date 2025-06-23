@@ -1,11 +1,14 @@
 import Badge from "./Badge";
-import { StarIcon } from "@phosphor-icons/react";
+import { XIcon } from "@phosphor-icons/react";
+import { useGlobalContext } from "../contexts/globalContext";
 
-export default function CompareCard({ game }) {
+export default function CompareCard({ game, position }) {
+
+  const { dispatch } = useGlobalContext();
 
   return (
     <>
-      <div className="flex flex-col gap-2 p-1 rounded-md bg-neutral-base-300">
+      <div className="flex flex-col gap-2 p-1 rounded-md bg-neutral-base-300 relative">
         {/* --- COVER ---------------- */}
         <figure className="overflow-hidden rounded-sm">
           <img src={game?.coverUrl} alt={game?.title} />
@@ -59,6 +62,13 @@ export default function CompareCard({ game }) {
         <div className="min-h-44 flex items-center border-b border-neutral-border/40 px-2">
           <p className="line-clamp-6">{game?.description}</p>
         </div>
+
+
+        {/* --- REMOVE FROM COMPARE ----------------------------------- */}
+        <div className="lg:hover:cursor-pointer transition-base absolute z-30 top-[-8px] right-[-8px] rounded-full bg-accent-solid p-2" onClick={(e) => {e.preventDefault(); e.stopPropagation(); dispatch({type: 'removeCompareGame', position: position})}}>
+          <XIcon size={16} weight="bold" className="text-white" />
+        </div>
+      
       </div>
     </>
   );

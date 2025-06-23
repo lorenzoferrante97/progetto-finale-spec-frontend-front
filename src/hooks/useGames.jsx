@@ -31,12 +31,18 @@ const reducer = (state, action) => {
           return {...state, filteredGames: action.payload};
         }
     case 'compareGames':
-      return {...state, comparedGames: [...state.comparedGames, action.payload]};
+      if(action.position === 0) {
+        return {...state, comparedGames: {...state.comparedGames, 0: action.payload}};
+      } else {
+        return {...state, comparedGames: {...state.comparedGames, 1: action.payload}};
+      }
+    case 'removeCompareGame':
+      return {...state, comparedGames: {...state.comparedGames, [action.position]: {}}};
       
   }
 }
 
-const [games, dispatch] = useReducer(reducer, {allGames: [], filteredGames: [], activeGame: {}, comparedGames: []});
+const [games, dispatch] = useReducer(reducer, {allGames: [], filteredGames: [], activeGame: {}, comparedGames: {0: {}, 1: {}}});
 
   return {games, error, dispatch};
 }

@@ -32,7 +32,7 @@ const { games, dispatch, getVideogames } = useGlobalContext();
           {/* --- FIRST SELECTOR ---------------- */}
           <div className="col-span-2 flex flex-col md:col-span-4 lg:col-span-6 rounded-lg">
             {
-              games?.comparedGames?.length === 0 ? <Selector games={games?.allGames} /> : <CompareCard game={games?.comparedGames[0]} /> 
+              Object.keys(games?.comparedGames[0]).length === 0 ? <Selector games={games?.allGames} position={0} /> : <CompareCard game={games?.comparedGames[0]} position={0} /> 
             }
             
           </div>
@@ -40,7 +40,7 @@ const { games, dispatch, getVideogames } = useGlobalContext();
           {/* --- SECOND SELECTOR ---------------- */}
           <div className="col-span-2 flex flex-col md:col-span-4 lg:col-span-6 rounded-lg">
           {
-              (games?.comparedGames?.length === 0) || (games?.comparedGames?.length === 1) ? <Selector games={games?.allGames} /> : <CompareCard game={games?.comparedGames[1]} /> 
+              Object.keys(games?.comparedGames[1]).length === 0 ? <Selector games={games?.allGames} position={1} /> : <CompareCard game={games?.comparedGames[1]} position={1} /> 
           }
           </div>
 
