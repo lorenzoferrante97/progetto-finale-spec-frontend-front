@@ -1,5 +1,5 @@
 
-import RadioButton from "../../components/RadioButton";
+import RadioButton from "../../components/RadioButton"
 
 export default function Filters( { items } ) {
 
