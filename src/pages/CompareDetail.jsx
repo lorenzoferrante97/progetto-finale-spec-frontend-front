@@ -1,5 +1,3 @@
-
-import Chooser from "../components/Chooser";
 import Selector from "../components/Selector";
 import { useEffect } from "react";
 import { useGlobalContext } from "../contexts/globalContext";
@@ -9,16 +7,16 @@ export default function CompareDetail() {
 const { games, dispatch, getVideogames } = useGlobalContext();
 
   useEffect(() => {
-      (async () => {
-        try {
-          const Videogames = await getVideogames();
-          dispatch({type: 'fetchAllGames', payload: Videogames});
-        } catch (err) {
-          console.error('Errore durante il recupero:', err.message);
-        }
-      })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    (async () => {
+      try {
+        const Videogames = await getVideogames();
+        dispatch({type: 'fetchAllGames', payload: Videogames});
+      } catch (err) {
+        console.error('Errore durante il recupero:', err.message);
+      }
+    })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -31,12 +29,12 @@ const { games, dispatch, getVideogames } = useGlobalContext();
         {/* --- MAIN -------------------------------------------------------------- */}
         <div className="col-span-full row-grid bg-neutral-base-200 rounded-lg p-4 min-h-[60vh] gap-2">
           {/* --- FIRST SELECTOR ---------------- */}
-          <div className="col-span-2 perfect-center md:col-span-4 lg:col-span-6">
+          <div className="col-span-2 perfect-center md:col-span-4 lg:col-span-6 border border-neutral-border p-2 lg:p-4 rounded-lg">
             <Selector games={games.allGames} />
           </div>
 
           {/* --- SECOND SELECTOR ---------------- */}
-          <div className="col-span-2 perfect-center md:col-span-4 lg:col-span-6">
+          <div className="col-span-2 perfect-center md:col-span-4 lg:col-span-6 border border-neutral-border p-2 lg:p-4 rounded-lg">
             <Selector games={games.allGames} />
           </div>
 
