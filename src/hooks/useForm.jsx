@@ -64,14 +64,16 @@ export default function useForm(array, dispatch) {
 
    useEffect(() => {
      if(query.length !== 0 && array.length !== 0) {
-       filterValuesByTitle(query);
+      setCategory('');
+      filterValuesByTitle(query);
      }
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [query]);
  
    useEffect(() => {
      if(category.length !== 0 && array.length !== 0) {
-       filterValuesByCategory(category);
+      setQuery('');
+      filterValuesByCategory(category);
      }
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [category]);
