@@ -45,8 +45,8 @@ export default function Home() {
     <>
       {/* --- HERO ------------------------------------------------------------- */}
       <div className="h-[40vh] bg-neutral-base-300 rounded-xl overflow-hidden" style={{backgroundImage: `url('${heroPattern}')`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-        <div className="size-full bg-gradient-to-b from-neutral-base-300/80 to-transparent from-50% to-100% p-4">
-          <h1 className="font-h1 md:max-w-1/2">Scopri e confronta i tuoi videogiochi preferiti</h1>
+        <div className="size-full bg-neutral-base-300/80 p-4">
+          <h1 className="font-h1 font-effect md:max-w-1/2">Scopri e confronta i tuoi videogiochi preferiti</h1>
         </div>
       </div>
     
