@@ -2,6 +2,7 @@ import { useGlobalContext } from "../contexts/globalContext";
 import { useEffect } from "react";
 import Card from "../components/Card";
 import Filters from "./sections/Filters";
+import heroPattern from "../assets/heroPattern.svg";
 
 export default function Home() {
 
@@ -43,8 +44,10 @@ export default function Home() {
   return (
     <>
       {/* --- HERO ------------------------------------------------------------- */}
-      <div className="min-h-[40vh]">
-        <h1 className="font-h1">Scopri e confronta i tuoi videogiochi preferiti</h1>
+      <div className="h-[40vh] bg-neutral-base-300 rounded-xl overflow-hidden" style={{backgroundImage: `url('${heroPattern}')`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+        <div className="size-full bg-gradient-to-b from-neutral-base-300/80 to-transparent from-50% to-100% p-4">
+          <h1 className="font-h1 md:max-w-1/2">Scopri e confronta i tuoi videogiochi preferiti</h1>
+        </div>
       </div>
     
       {/* --- SEARCH ------------------------------------------------------------- */}
