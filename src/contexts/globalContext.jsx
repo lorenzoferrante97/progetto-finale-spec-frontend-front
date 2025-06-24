@@ -21,7 +21,7 @@ const GlobalProvider = ({ children }) => {
    const {query, handleChange, category, handleCategoryChange} = useForm(games?.allGames, dispatch);
 
   // --- USE SORT ---------------------------------------------------------------------------
-  const {sortedData, handleSort, sortBy, sortOrder} = useSort((games?.filteredGames?.length > 0 && (query?.length > 0)) ? games?.filteredGames : games?.allGames, "title", "desc");
+  const {sortedData, handleSort, sortBy, sortOrder} = useSort((games?.filteredGames?.length > 0 && ((query?.length > 0) || (category?.length > 0))) ? games?.filteredGames : games?.allGames, "title", "desc");
 
   // --- USE STORAGE ---------------------------------------------------------------------------
   const {feedback, isFavorite, favorites,addToStorage, removeFromStorage, getFromStorage, checkFavorite} = useStorage();
