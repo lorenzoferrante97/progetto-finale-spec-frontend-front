@@ -49,10 +49,12 @@ export default function useForm(array, dispatch) {
     }, 500),
   []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const filterValuesByCategory = useCallback(
     debounce(async (category) => {
       try {
         const res = await getVideogamesByCategory(category);
+        console.log("res: ", res);
         dispatch({ type: "filterGames", payload: res });
       } catch (err) {
         console.error('Error to fetch videogames by category:', err.message);

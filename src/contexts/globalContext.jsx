@@ -34,6 +34,7 @@ const GlobalProvider = ({ children }) => {
     sortBy,
     sortOrder,
     query,
+    category,
     feedback,
     isFavorite,
     favorites,

@@ -15,11 +15,12 @@ export default function Home() {
     sortBy,
     sortOrder,
     query,
+    category,
     handleChange
   } = useGlobalContext();
 
   // --- RENDER CONDIZIONALE ------------------------------------------------------------------
-  const renderList = (games?.filteredGames?.length > 0 && (query?.length > 0)) ? games?.filteredGames : games?.allGames;
+  const renderList = (games?.filteredGames?.length > 0 && ((query?.length > 0) || (category?.length > 0))) ? games?.filteredGames : games?.allGames;
 
   useEffect(() => {
     (async () => {

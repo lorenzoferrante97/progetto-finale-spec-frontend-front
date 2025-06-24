@@ -68,7 +68,6 @@ export default function useFetch() {
 
     // --- Get full videogames info -----------------------------
     const allInfo = await Promise.allSettled(resJson.map(item => getVideogame(item.id)));
-    console.log("allInfo getbytitle: ", allInfo);
 
     // --- CoverUrl added to results ----------------------------
     const fullRes = allInfo?.map(item => {
@@ -89,7 +88,6 @@ export default function useFetch() {
 
     // --- Get full videogames info -----------------------------
     const allInfo = await Promise.allSettled(resJson.map(item => getVideogame(item.id)));
-    console.log("allInfo getbytitle: ", allInfo);
 
     // --- CoverUrl added to results ----------------------------
     const fullRes = allInfo?.map(item => {
