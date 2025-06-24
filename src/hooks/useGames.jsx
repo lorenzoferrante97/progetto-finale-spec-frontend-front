@@ -40,6 +40,8 @@ const reducer = (state, action) => {
       return {...state, comparedGames: {...state.comparedGames, [action.position]: {}}};
     case 'setCategories':
       return {...state, categories: action.payload};
+    case 'resetFilterGames':
+      return {...state, filteredGames: []};
       
   }
 }

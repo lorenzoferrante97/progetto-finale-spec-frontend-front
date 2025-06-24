@@ -63,10 +63,16 @@ export default function Home() {
           <button className="bg-neutral-soft max-sm:w-full rounded-md px-3 py-2 max-lg:min-h-12" onClick={() => handleSort("category")}>Categoria <span className="bg-neutral-base-300 p-1 rounded-sm transition-base font-body-s-light">{(sortOrder === 1) && (sortBy === "category") ? "A-Z" : "Z-A"}</span></button>
         </div>
         {
+          console.log("games: ", games)
+        }
+        {
+          console.log("error bool: ", error?.bool)
+        }
+        {
           error?.bool ?
           <p className="min-w-60">{error?.message}</p>
           : 
-          renderList?.map((game) => <Card key={game.id} game={game}/>)
+          renderList?.map((game) => <Card key={game?.id} game={game}/>)
           
         }
       </div>

@@ -18,7 +18,7 @@ const GlobalProvider = ({ children }) => {
   const {games, error, dispatch} = useGames();
 
    // --- USE FORM ---------------------------------------------------------------------------
-   const {query, handleChange, category, handleCategoryChange} = useForm(games?.allGames, dispatch);
+   const {query, handleChange, category, handleCategoryChange, handleResetCategory} = useForm(games?.allGames, dispatch);
 
   // --- USE SORT ---------------------------------------------------------------------------
   const {sortedData, handleSort, sortBy, sortOrder} = useSort((games?.filteredGames?.length > 0 && ((query?.length > 0) || (category?.length > 0))) ? games?.filteredGames : games?.allGames, "title", "desc");
@@ -44,6 +44,7 @@ const GlobalProvider = ({ children }) => {
     getVideogame,
     handleChange,
     handleCategoryChange,
+    handleResetCategory,
     addToStorage,
     removeFromStorage,
     getFromStorage,

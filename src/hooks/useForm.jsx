@@ -25,6 +25,9 @@ export default function useForm(array, dispatch) {
   const handleChange = (e) => setQuery(e.target.value);
   const handleCategoryChange = (e) => setCategory(e.target.value);
 
+  // --- RESET -----------------------------------------------------------------------------
+  const handleResetCategory = () => { setCategory(''), dispatch({ type: "resetFilterGames"})}
+
   // const filterValues = useCallback(debounce((query, array) => {
   //   const filterRes = array?.filter((item) => {
   //     const { title } = item;
@@ -54,7 +57,6 @@ export default function useForm(array, dispatch) {
     debounce(async (category) => {
       try {
         const res = await getVideogamesByCategory(category);
-        console.log("res: ", res);
         dispatch({ type: "filterGames", payload: res });
       } catch (err) {
         console.error('Error to fetch videogames by category:', err.message);
@@ -79,5 +81,5 @@ export default function useForm(array, dispatch) {
    }, [category]);
  
   
-  return {query, handleChange, category, handleCategoryChange};
+  return {query, handleChange, category, handleCategoryChange, handleResetCategory};
 }
