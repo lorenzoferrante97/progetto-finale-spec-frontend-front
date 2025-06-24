@@ -5,7 +5,7 @@ export default function Filters( { items } ) {
 
   return (
     <>
-      <div className="overflow-x-auto w-full min-h-12 snap-x scroll-smooth">
+      <div className="overflow-x-auto w-full min-h-12 snap-x scroll-smooth py-2">
         <div className="flex items-center gap-1 px-2 py-1 w-max">
           {/* --- CATEGORIES ---------------- */}
           {
