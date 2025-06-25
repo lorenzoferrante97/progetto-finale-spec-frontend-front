@@ -2,6 +2,7 @@ import Selector from "../components/Selector";
 import { useEffect } from "react";
 import { useGlobalContext } from "../contexts/globalContext";
 import CompareCard from "../components/compareCard";
+import heroPattern from "../assets/heroPattern.svg";
 
 export default function CompareDetail() {
 
@@ -22,9 +23,11 @@ const { games, dispatch, getVideogames } = useGlobalContext();
   return (
     <>
       <div className="row-grid w-full gap-y-10">
-        {/* --- HEADER ------------------------------------------------------------- */}
-        <div className="col-span-full md:col-start-2 md:col-span-6 lg:col-start-3 lg:col-span-8">
-          <h1 className="font-h1 lg:text-center">Confronta due Videogiochi e scopri quello che fa per te</h1>
+        {/* --- HERO ------------------------------------------------------------- */}
+        <div className="h-[40vh] bg-neutral-base-300 rounded-xl overflow-hidden col-span-full" style={{backgroundImage: `url('${heroPattern}')`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+          <div className="size-full bg-neutral-base-300/80 p-4">
+            <h1 className="font-h1 font-effect md:max-w-1/2">Confronta due Videogiochi e scopri quello che fa per te</h1>
+          </div>
         </div>
 
         {/* --- MAIN -------------------------------------------------------------- */}
