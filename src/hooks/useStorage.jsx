@@ -34,6 +34,7 @@ export default function useStorage() {
         const updatedItem = storedItem.filter((arrayItem) => arrayItem.id !== item.id);
         localStorage.setItem(key, JSON.stringify(updatedItem));
         setIsFavorite(false);
+        setFavorites(updatedItem);
         setFeedback("rimosso!");
         setTimeout(() => setFeedback(""), 3000);
       }
