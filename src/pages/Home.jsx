@@ -27,7 +27,12 @@ export default function Home() {
     (async () => {
       try {
         const Videogames = await getVideogames();
-        dispatch({type: 'setCategories', payload: Videogames?.map((game) => game.category)});
+        dispatch({
+          type: 'setCategories',
+          payload: Videogames
+            ?.map(game => game.category)
+            .filter((category, index, self) => self.indexOf(category) === index)
+        });        
         dispatch({type: 'fetchAllGames', payload: Videogames});
       } catch (err) {
         console.error('Errore durante il recupero:', err.message);
