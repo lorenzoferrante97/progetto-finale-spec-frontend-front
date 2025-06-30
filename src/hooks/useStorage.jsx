@@ -46,12 +46,17 @@ export default function useStorage() {
       const storedItem = getFromStorage(key);
 
       if(storedItem) {
-        storedItem.push(value);
-        localStorage.removeItem(key);
-        localStorage.setItem(key, JSON.stringify(storedItem));
-        setIsFavorite(true);
-        setFeedback("aggiunto!")
-        setTimeout(() => setFeedback(""), 3000);
+
+        if(storedItem.some((item) => item.id === value.id)) {
+          return;
+        } else {
+          storedItem.push(value);
+          localStorage.removeItem(key);
+          localStorage.setItem(key, JSON.stringify(storedItem));
+          setIsFavorite(true);
+          setFeedback("aggiunto!")
+          setTimeout(() => setFeedback(""), 3000);
+        }
       } else {
         localStorage.setItem(key, JSON.stringify([value]));
         setIsFavorite(true);
